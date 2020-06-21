@@ -12,7 +12,9 @@ public class KafkaConsumer {
         System.out.println("Consumed message: " + message);
     }
 
-    @KafkaListener(topics = "json-topic", groupId = "json-group", containerFactory = "laptopKafkaListenerFactory")
+    //'groupId' for Consumers is mandatory. It can be defined either as a property in annotation like above or in the ConsumerFactory configuration like below
+
+    @KafkaListener(topics = "json-topic", containerFactory = "laptopKafkaListenerFactory") //if ContainerFactory used, its id is mandatory here
     public void consume(Laptop laptop) {
         System.out.println("Consumed message: " + laptop);
     }
